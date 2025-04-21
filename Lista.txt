@@ -1,0 +1,110 @@
+// Ex-1
+let aluno = {
+  nome: "João",
+  idade: 20,
+  curso: "Engenharia",
+  notas: [7, 8.5, 9, 6.5]
+};
+
+function calcularMedia(aluno) {
+  let soma = aluno.notas.reduce((acc, nota) => acc + nota, 0);
+  aluno.media = soma / aluno.notas.length;
+}
+
+calcularMedia(aluno);
+console.log(aluno);
+
+// Ex-2
+let produtos = [
+  { nome: "Notebook", preco: 3500, categoria: "Eletrônicos" },
+  { nome: "Tênis", preco: 250, categoria: "Moda" },
+  { nome: "Smartphone", preco: 2500, categoria: "Eletrônicos" },
+  { nome: "Camiseta", preco: 50, categoria: "Moda" }
+];
+
+function filtrarPorCategoria(categoria) {
+  return produtos.filter(produto => produto.categoria === categoria);
+}
+
+console.log(filtrarPorCategoria("Eletrônicos"));
+
+//Ex-3
+function contarVogais(texto) {
+  let vogais = texto.match(/[aeiouáéíóúãõâêîôû]/gi);
+  return vogais ? vogais.length : 0;
+}
+
+console.log(contarVogais("Olá, mundo!"));
+
+//Ex-4
+function executarOperacao(a, b, operacao) {
+  return operacao(a, b);
+}
+
+let soma = (x, y) => x + y;
+let subtracao = (x, y) => x - y;
+let multiplicacao = (x, y) => x * y;
+
+console.log(executarOperacao(5, 3, soma));
+console.log(executarOperacao(5, 3, subtracao));
+console.log(executarOperacao(5, 3, multiplicacao));
+
+//Ex-5
+function mostrarDataHoraAtual() {
+  let agora = new Date();
+  let data = agora.toLocaleDateString('pt-BR');
+  let hora = agora.toLocaleTimeString('pt-BR');
+  console.log(`Hoje é ${data} e agora são ${hora}`);
+}
+
+//Ex-6
+setInterval(() => {
+  let agora = new Date();
+  let hora = agora.toLocaleTimeString('pt-BR');
+  console.log(hora);
+}, 1000);
+
+//Ex-7
+let tempo = 5;
+
+let contador = setInterval(() => {
+  console.log(tempo);
+  tempo--;
+  if (tempo < 0) {
+    clearInterval(contador);
+    console.log("Tempo esgotado!");
+  }
+}, 1000);
+
+//Ex-8
+let usuario = {
+  nome: "Maria",
+  email: "maria@example.com",
+  idade: 30
+};
+
+let json = JSON.stringify(usuario);
+console.log("JSON:", json);
+
+let objConvertido = JSON.parse(json);
+console.log("Objeto convertido:", objConvertido);
+//Ex-9
+let respostaAPI = `{
+  "tarefas": [
+    { "descricao": "Estudar JS", "concluida": true },
+    { "descricao": "Ler livro", "concluida": false },
+    { "descricao": "Praticar exercícios", "concluida": true }
+  ]
+}`;
+
+let dados = JSON.parse(respostaAPI);
+
+function mostrarTarefasConcluidas(tarefas) {
+  tarefas.forEach(tarefa => {
+    if (tarefa.concluida) {
+      console.log("Concluída:", tarefa.descricao);
+    }
+  });
+}
+
+mostrarTarefasConcluidas(dados.tarefas);
